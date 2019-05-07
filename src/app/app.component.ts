@@ -25,7 +25,8 @@ export class AppComponent {
       return this.onClear()
     } 
 
-    this.displaydValue = this.displaydValue.slice(0, this.displaydValue.length-1)
+    const expretion = this.extrectExpretion(this.displaydValue, null)
+    this.displaydValue = expretion.slice(0, expretion.length-1)
   }
 
   onClick(event) {
@@ -48,6 +49,7 @@ export class AppComponent {
   }
   
   onResult() {
+    debugger
     if(this.validate(this.extrectExpretion(this.displaydValue, null))) {
       this.isValid = true
     }
@@ -55,7 +57,9 @@ export class AppComponent {
       return this.isValid = false
     }
 
-    this.displaydValue = this.extrectExpretion(this.displaydValue, true)
+    const resultValue = this.extrectExpretion(this.displaydValue, true) || this.calculateResult(this.extrectExpretion(this.displaydValue, null))
+
+    this.displaydValue = resultValue
     this.isResolved = true
   }
 
